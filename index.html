@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>بسبوسة وبسكويت</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --amber: #E8820C;
+      --amber-light: #F5A623;
+      --amber-pale: #FFF3E0;
+      --brown-dark: #3E1C00;
+      --brown-mid: #6B3A1F;
+      --brown-light: #A0522D;
+      --cream: #FDF6EC;
+      --cream-dark: #F5E6C8;
+      --white: #FFFFFF;
+      --text-dark: #2C1200;
+      --text-mid: #5A3010;
+      --shadow: rgba(62,28,0,0.15);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(253,246,236,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--cream-dark);
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+      box-shadow: 0 2px 20px var(--shadow);
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo .logo-icon {
+      width: 48px; height: 48px;
+      background: var(--amber);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      box-shadow: 0 3px 10px rgba(232,130,12,0.4);
+    }
+    .nav-logo span {
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 900;
+      font-size: 1.35rem;
+      color: var(--brown-dark);
+      line-height: 1.1;
+    }
+    .nav-logo small { font-size: 0.75rem; color: var(--amber); font-weight: 600; }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--brown-mid);
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 4px 0;
+      position: relative;
+      transition: color .25s;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -2px; right: 0;
+      width: 0; height: 2px;
+      background: var(--amber);
+      transition: width .3s;
+    }
+    .nav-links a:hover { color: var(--amber); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      background: var(--amber);
+      color: var(--white) !important;
+      padding: 8px 20px !important;
+      border-radius: 30px;
+      box-shadow: 0 4px 12px rgba(232,130,12,0.35);
+      transition: transform .2s, box-shadow .2s !important;
+    }
+    .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(232,130,12,0.5) !important; }
+    .nav-cta::after { display: none !important; }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 72px;
+    }
+
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 30% 50%, rgba(232,130,12,0.12) 0%, transparent 70%),
+        linear-gradient(135deg, var(--cream) 0%, var(--amber-pale) 100%);
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(232,130,12,0.08) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+
+    .hero-decor {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--amber-light);
+      opacity: 0.08;
+      filter: blur(60px);
+    }
+    .hero-decor.d1 { width: 500px; height: 500px; top: -100px; left: -150px; }
+    .hero-decor.d2 { width: 300px; height: 300px; bottom: 0; right: 10%; }
+
+    .hero-inner {
+      position: relative; z-index: 2;
+      width: 90%; max-width: 1200px;
+      margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+      padding: 4rem 0;
+    }
+
+    .hero-text { animation: fadeUp .8s ease both; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(232,130,12,0.12);
+      color: var(--amber);
+      border: 1.5px solid rgba(232,130,12,0.3);
+      border-radius: 30px;
+      padding: 5px 18px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: .05em;
+      margin-bottom: 1.2rem;
+    }
+    .hero-text h1 {
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
+      line-height: 1.15;
+      color: var(--brown-dark);
+      margin-bottom: 1.2rem;
+    }
+    .hero-text h1 span { color: var(--amber); }
+    .hero-text p {
+      font-size: 1.05rem;
+      color: var(--text-mid);
+      line-height: 1.8;
+      max-width: 440px;
+      margin-bottom: 2rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--amber);
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 40px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 6px 20px rgba(232,130,12,0.4);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(232,130,12,0.5); }
+    .btn-outline {
+      background: transparent;
+      color: var(--brown-dark);
+      border: 2px solid var(--brown-dark);
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all .2s;
+    }
+    .btn-outline:hover { background: var(--brown-dark); color: white; }
+
+    .hero-visual {
+      position: relative;
+      animation: fadeUp .8s .2s ease both;
+    }
+    .hero-img-wrap {
+      position: relative;
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      overflow: hidden;
+      aspect-ratio: 1;
+      max-width: 480px;
+      margin: 0 auto;
+      box-shadow: 0 30px 80px rgba(62,28,0,0.25);
+    }
+    .hero-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .hero-img-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #c87941 0%, #e8a85c 40%, #f5c78e 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 8rem;
+    }
+    .hero-stat {
+      position: absolute;
+      background: white;
+      border-radius: 16px;
+      padding: 12px 20px;
+      box-shadow: 0 8px 30px var(--shadow);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-stat.s1 { bottom: 10%; left: -5%; }
+    .hero-stat.s2 { top: 8%; right: -5%; }
+    .hero-stat .stat-num {
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: var(--amber);
+    }
+    .hero-stat .stat-lbl { font-size: 0.75rem; color: var(--text-mid); font-weight: 600; }
+
+    .card-img img { width:100%; height:100%; object-fit:cover; display:block; }
+    .about-img img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    /* ── SECTION GENERIC ── */
+    section { padding: 90px 5%; }
+    .section-header { text-align: center; margin-bottom: 3.5rem; }
+    .section-tag {
+      display: inline-block;
+      background: rgba(232,130,12,0.1);
+      color: var(--amber);
+      border-radius: 20px;
+      padding: 4px 16px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      margin-bottom: .7rem;
+    }
+    .section-header h2 {
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 900;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--brown-dark);
+      margin-bottom: .6rem;
+    }
+    .section-header p { color: var(--text-mid); max-width: 520px; margin: 0 auto; line-height: 1.7; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--brown-dark); }
+    #about .section-header h2 { color: var(--cream); }
+    #about .section-tag { background: rgba(245,166,35,0.2); color: var(--amber-light); }
+    #about .section-header p { color: rgba(253,246,236,0.7); }
+
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .about-img {
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      aspect-ratio: 4/3;
+    }
+    .about-img-ph {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #5a3010 0%, #a0522d 60%, #c87941 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 6rem;
+    }
+    .about-content { color: var(--cream); }
+    .about-content h3 {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1.8rem; font-weight: 800;
+      color: var(--amber-light);
+      margin-bottom: 1rem;
+    }
+    .about-content p { line-height: 1.9; color: rgba(253,246,236,0.8); margin-bottom: 1.2rem; }
+    .about-features { display: flex; flex-direction: column; gap: .7rem; margin-top: 1.5rem; }
+    .about-feat {
+      display: flex; align-items: center; gap: .75rem;
+      color: var(--cream);
+    }
+    .about-feat .feat-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: rgba(232,130,12,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .about-feat span { font-size: 0.92rem; color: rgba(253,246,236,0.85); }
+
+    /* ── MENU ── */
+    #menu { background: var(--cream); }
+
+    .menu-tabs {
+      display: flex; justify-content: center; gap: .5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .tab-btn {
+      background: transparent;
+      border: 2px solid var(--cream-dark);
+      color: var(--text-mid);
+      padding: 9px 22px;
+      border-radius: 30px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--amber);
+      border-color: var(--amber);
+      color: white;
+    }
+
+    .menu-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .menu-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px var(--shadow);
+      transition: transform .3s, box-shadow .3s;
+      display: none;
+    }
+    .menu-card.active { display: block; }
+    .menu-card:hover { transform: translateY(-6px); box-shadow: 0 14px 40px rgba(62,28,0,0.2); }
+
+    .card-img {
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+    .card-img-ph {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem;
+    }
+    .card-badge {
+      position: absolute; top: 12px; right: 12px;
+      background: var(--amber);
+      color: white;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .card-body { padding: 1.2rem 1.4rem 1.4rem; }
+    .card-body h4 {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1.15rem; font-weight: 800;
+      color: var(--brown-dark);
+      margin-bottom: .4rem;
+    }
+    .card-body p { font-size: 0.83rem; color: var(--text-mid); line-height: 1.6; margin-bottom: 1rem; }
+    .card-footer { display: flex; align-items: center; justify-content: space-between; }
+    .price {
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1.3rem; font-weight: 900;
+      color: var(--amber);
+    }
+    .price small { font-size: 0.75rem; font-weight: 500; color: var(--text-mid); }
+    .add-btn {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--amber);
+      border: none;
+      color: white;
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 3px 10px rgba(232,130,12,0.35);
+    }
+    .add-btn:hover { transform: scale(1.15); box-shadow: 0 5px 16px rgba(232,130,12,0.5); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--amber-pale); }
+
+    .contact-wrap {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; max-width: 1100px; margin: 0 auto;
+      align-items: start;
+    }
+    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+    .contact-card {
+      background: white;
+      border-radius: 18px;
+      padding: 1.4rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      box-shadow: 0 4px 16px var(--shadow);
+      transition: transform .2s;
+    }
+    .contact-card:hover { transform: translateX(-4px); }
+    .contact-icon {
+      width: 48px; height: 48px; flex-shrink: 0;
+      border-radius: 14px;
+      background: rgba(232,130,12,0.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+    }
+    .contact-card h5 { font-size: .8rem; color: var(--amber); font-weight: 700; margin-bottom: .2rem; }
+    .contact-card p, .contact-card a {
+      font-size: .95rem; color: var(--text-dark); font-weight: 600;
+      text-decoration: none;
+    }
+    .social-row { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: .3rem; }
+    .soc-btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: white;
+      border: 2px solid var(--cream-dark);
+      color: var(--brown-mid);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: .82rem; font-weight: 700;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .soc-btn:hover { background: var(--amber); border-color: var(--amber); color: white; }
+
+    .map-box {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px var(--shadow);
+    }
+    .map-ph {
+      height: 320px;
+      background: linear-gradient(135deg, #e8d5b0 0%, #d4b483 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 1rem;
+      position: relative;
+    }
+    .map-ph::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(180,140,80,0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(180,140,80,0.15) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+    .map-pin { font-size: 3rem; position: relative; z-index: 1; animation: bounce 1.5s infinite; }
+    .map-ph p { font-weight: 700; color: var(--brown-dark); position: relative; z-index: 1; }
+    .map-ph a {
+      background: var(--amber); color: white;
+      padding: 8px 20px; border-radius: 20px;
+      text-decoration: none; font-weight: 700; font-size: .85rem;
+      position: relative; z-index: 1;
+    }
+    .hours-box { padding: 1.2rem 1.4rem; }
+    .hours-box h5 { font-weight: 700; color: var(--brown-dark); margin-bottom: .8rem; font-size: .9rem; }
+    .hours-row {
+      display: flex; justify-content: space-between;
+      padding: .45rem 0;
+      border-bottom: 1px solid var(--cream-dark);
+      font-size: .88rem; color: var(--text-mid);
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-row strong { color: var(--brown-dark); }
+    .open-now { color: #2e7d32; font-weight: 700; font-size: .75rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--brown-dark);
+      color: rgba(253,246,236,0.7);
+      text-align: center;
+      padding: 2rem;
+      font-size: .85rem;
+    }
+    footer strong { color: var(--amber-light); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .6s, transform .6s;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── MOBILE MENU ── */
+    #mobile-menu {
+      display: none;
+      position: fixed; top: 72px; left: 0; right: 0; z-index: 99;
+      background: rgba(253,246,236,0.98);
+      backdrop-filter: blur(16px);
+      border-bottom: 2px solid var(--cream-dark);
+      flex-direction: column;
+      padding: 1rem 5%;
+      gap: .5rem;
+      box-shadow: 0 8px 30px var(--shadow);
+    }
+    #mobile-menu.open { display: flex; }
+    #mobile-menu a {
+      text-decoration: none;
+      color: var(--brown-mid);
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: .75rem 0;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+    #mobile-menu a:last-child { border-bottom: none; }
+    #mobile-menu .mob-cta {
+      background: var(--amber);
+      color: white !important;
+      text-align: center;
+      border-radius: 30px;
+      padding: .75rem !important;
+      border: none !important;
+      margin-top: .5rem;
+    }
+    .ham-line {
+      display: block; width: 24px; height: 2.5px;
+      background: var(--brown-dark); border-radius: 2px;
+      transition: all .3s;
+    }
+    #hamburger.open .ham-line:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    #hamburger.open .ham-line:nth-child(2) { opacity: 0; }
+    #hamburger.open .ham-line:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    /* ── HERO VISUAL MOSAIC ── */
+    .hero-mosaic {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      height: 460px;
+    }
+    .mosaic-main {
+      position: absolute;
+      top: 0; right: 0;
+      width: 72%; height: 72%;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(62,28,0,0.3);
+      z-index: 3;
+    }
+    .mosaic-main img { width:100%; height:100%; object-fit:cover; }
+    .mosaic-sm1 {
+      position: absolute;
+      bottom: 0; right: 15%;
+      width: 48%; height: 44%;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(62,28,0,0.25);
+      z-index: 2;
+      border: 3px solid white;
+    }
+    .mosaic-sm1 img { width:100%; height:100%; object-fit:cover; }
+    .mosaic-sm2 {
+      position: absolute;
+      top: 20%; left: 0;
+      width: 36%; height: 40%;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(62,28,0,0.2);
+      z-index: 4;
+      border: 3px solid white;
+    }
+    .mosaic-sm2 img { width:100%; height:100%; object-fit:cover; }
+    .mosaic-badge {
+      position: absolute;
+      bottom: 12%; left: -2%;
+      background: white;
+      border-radius: 16px;
+      padding: 10px 16px;
+      box-shadow: 0 8px 30px var(--shadow);
+      display: flex; align-items: center; gap: 10px;
+      z-index: 5;
+      animation: float 3s ease-in-out infinite;
+    }
+    .mosaic-badge .stat-num { font-family:'Tajawal',sans-serif; font-weight:900; font-size:1.4rem; color:var(--amber); }
+    .mosaic-badge .stat-lbl { font-size:.72rem; color:var(--text-mid); font-weight:600; }
+    .mosaic-dot {
+      position: absolute;
+      top: -10px; left: 30%;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,130,12,0.18) 0%, transparent 70%);
+      z-index: 1;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      #hamburger { display: flex !important; }
+      .nav-links { display: none; }
+      .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-visual { order: -1; }
+      .hero-mosaic { height: 320px; max-width: 340px; }
+      .about-grid, .contact-wrap { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <div class="logo-icon">🍪</div>
+    <div>
+      <span>بسبوسة وبسكويت</span><br>
+      <small>Premium Biscuit House</small>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#hero">الصفحة الرئيسية</a></li>
+    <li><a href="#about">عن المطعم</a></li>
+    <li><a href="#menu">قائمة الطعام</a></li>
+    <li><a href="#contact">تواصل معنا</a></li>
+    <li><a href="#menu" class="nav-cta">اطلب الآن</a></li>
+    <button id="hamburger" aria-label="القائمة" style="display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:6px;">
+      <span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span>
+    </button>
+  </ul>
+</nav>
+
+<!-- Mobile dropdown menu -->
+<div id="mobile-menu">
+  <a href="#hero">الصفحة الرئيسية</a>
+  <a href="#about">عن المطعم</a>
+  <a href="#menu">قائمة الطعام</a>
+  <a href="#contact">تواصل معنا</a>
+  <a href="#menu" class="mob-cta">اطلب الآن</a>
+</div>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-decor d1"></div>
+  <div class="hero-decor d2"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">🏆 الأفضل في القاهرة منذ 2010</div>
+      <h1>بسكويت <span>فاخر</span><br>بكل قطعة</h1>
+      <p>مرحباً بكم في عالم البسكويت الراقي. نُقدّم لكم أشهى أنواع البسكويت المصنوع بحبٍّ وأفضل المكونات الطبيعية، بطعم لن تنساه أبداً.</p>
+      <div class="hero-btns">
+        <a href="#menu" class="btn-primary">اكتشف القائمة</a>
+        <a href="#about" class="btn-outline">عن المطعم</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-mosaic">
+        <div class="mosaic-dot"></div>
+        <div class="mosaic-main">
+          <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=900&q=80" alt="بسكويت فاخر" />
+        </div>
+        <div class="mosaic-sm1">
+          <img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=400&q=80" alt="شوكولاتة" />
+        </div>
+        <div class="mosaic-sm2">
+          <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=400&q=80" alt="بسكويت" />
+        </div>
+        <div class="mosaic-badge">
+          <div>
+            <div class="stat-num">+50</div>
+            <div class="stat-lbl">نوع من البسكويت</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<section id="about">
+  <div class="section-header reveal">
+    <div class="section-tag">✨ قصتنا</div>
+    <h2>عن المطعم</h2>
+    <p>نحكاية بدأت بشغف وانتهت بإبداع</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-img reveal">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80" alt="خبازنا المحترف" style="width:100%;height:100%;object-fit:cover;" />
+    </div>
+    <div class="about-content reveal">
+      <h3>أكثر من مجرد بسكويت</h3>
+      <p>
+        نحن لسنا مجرد مخبز — نحن وجهة لعشاق الجودة الحقيقية. بدأت رحلتنا عام 2010 بفكرة بسيطة: تقديم بسكويت يُعيد لك ذكرى الطفولة، لكن بأسلوب عصري فاخر.
+      </p>
+      <p>
+        كل قطعة بسكويت تخرج من مطبخنا تمر بأيدي حرفيين موهوبين، ومكونات مختارة بعناية من أفضل المصادر المحلية والعالمية.
+      </p>
+      <div class="about-features">
+        <div class="about-feat"><div class="feat-icon">🌾</div><span>مكونات طبيعية 100% بدون مواد حافظة</span></div>
+        <div class="about-feat"><div class="feat-icon">👩‍🍳</div><span>خبازون محترفون بخبرة أكثر من 15 عاماً</span></div>
+        <div class="about-feat"><div class="feat-icon">🎁</div><span>تغليف فاخر مثالي للهدايا والمناسبات</span></div>
+        <div class="about-feat"><div class="feat-icon">🚗</div><span>توصيل سريع لجميع أنحاء القاهرة</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ MENU ═══════════════ -->
+<section id="menu">
+  <div class="section-header reveal">
+    <div class="section-tag">🍪 قائمتنا</div>
+    <h2>قائمة الطعام</h2>
+    <p>تشكيلة متنوعة من أفخم أنواع البسكويت تناسب جميع الأذواق</p>
+  </div>
+
+  <div class="menu-tabs">
+    <button class="tab-btn active" onclick="filterMenu('all')">الكل</button>
+    <button class="tab-btn" onclick="filterMenu('plain')">بسكويت سادة</button>
+    <button class="tab-btn" onclick="filterMenu('choco')">بالشوكولاتة</button>
+    <button class="tab-btn" onclick="filterMenu('date')">بالتمر</button>
+  </div>
+
+  <div class="menu-grid">
+    <!-- plain -->
+    <div class="menu-card active" data-cat="plain">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500&q=80" alt="بسكويت زبدة" style="width:100%;height:100%;object-fit:cover;" />
+        <span class="card-badge">الأكثر مبيعاً</span>
+      </div>
+      <div class="card-body">
+        <h4>بسكويت زبدة كلاسيك</h4>
+        <p>بسكويت الزبدة الأصلي بوصفة سرية تجعله هشًا ومذهلاً في كل لقمة</p>
+        <div class="card-footer">
+          <div class="price">15 <small>ج.م</small></div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card active" data-cat="plain">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=500&q=80" alt="بسكويت فانيليا" style="width:100%;height:100%;object-fit:cover;" />
+      </div>
+      <div class="card-body">
+        <h4>بسكويت الفانيليا</h4>
+        <p>بسكويت خفيف بنكهة الفانيليا الطبيعية المستخرجة من مزارع مدغشقر</p>
+        <div class="card-footer">
+          <div class="price">15 <small>ج.م</small></div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card active" data-cat="plain">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1512152272829-e3139592d56f?w=500&q=80" alt="بسكويت شوفان" style="width:100%;height:100%;object-fit:cover;" />
+      </div>
+      <div class="card-body">
+        <h4>بسكويت الشوفان والعسل</h4>
+        <p>مزيج صحي من الشوفان الكامل مع عسل النحل الطبيعي لطاقة متواصلة</p>
+        <div class="card-footer">
+          <div class="price">18 <small>ج.م</small></div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- choco -->
+    <div class="menu-card active" data-cat="choco">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1606312619070-d48b4c652a52?w=500&q=80" alt="بسكويت شوكولاتة" style="width:100%;height:100%;object-fit:cover;" />
+        <span class="card-badge">جديد</span>
+      </div>
+      <div class="card-body">
+        <h4>بسكويت شوكولاتة فاخرة</h4>
+        <p>شوكولاتة داكنة بلجيكية 70% تغطي بسكويتاً هشاً مقرمشاً مثالياً</p>
+        <div class="card-footer">
+          <div class="price">18 <small>ج.م</small></div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card active" data-cat="choco">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1548365328-8c6db3220e4d?w=500&q=80" alt="دبل شوكو" style="width:100%;height:100%;object-fit:cover;" />
+      </div>
+      <div class="card-body">
+        <h4>بسكويت دبل شوكو</h4>
+        <p>ضعف الشوكولاتة، ضعف السعادة — عجينة شوكو مع قطع شوكو داخلها</p>
+        <div class="card-footer">
+          <div class="price">20 <small>ج.م</small></div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card active" data-cat="choco">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1571506165871-ee72a35bc9d4?w=500&q=80" alt="شوكو بندق" style="width:100%;height:100%;object-fit:cover;" />
+        <span class="card-badge">الأكثر مبيعاً</span>
+      </div>
+      <div class="card-body">
+        <h4>بسكويت شوكو بالبندق</h4>
+        <p>تشكيلة رائعة من شوكولاتة الحليب وقطع البندق المحمص الطازج</p>
+        <div class="card-footer">
+          <div class="price">22 <small>ج.م</small></div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- date -->
+    <div class="menu-card active" data-cat="date">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?w=500&q=80" alt="بسكويت تمر" style="width:100%;height:100%;object-fit:cover;" />
+        <span class="card-badge">تراثي</span>
+      </div>
+      <div class="card-body">
+        <h4>بسكويت بالتمر الأصلي</h4>
+        <p>محشو بعجوة التمر السعودي الفاخر مع لمسة من الهيل والقرفة الأصيلة</p>
+        <div class="card-footer">
+          <div class="price">18 <small>ج.م</small></div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card active" data-cat="date">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1556471013-0001958d2b0d?w=500&q=80" alt="تمر وجوز" style="width:100%;height:100%;object-fit:cover;" />
+      </div>
+      <div class="card-body">
+        <h4>بسكويت التمر والجوز</h4>
+        <p>مزيج فاخر من التمر المدني وقطع الجوز المحمص بالزبدة الطازجة</p>
+        <div class="card-footer">
+          <div class="price">22 <small>ج.م</small></div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card active" data-cat="date">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1604935067151-cb10c14a91f2?w=500&q=80" alt="تمر وسمسم" style="width:100%;height:100%;object-fit:cover;" />
+        <span class="card-badge">مميز</span>
+      </div>
+      <div class="card-body">
+        <h4>بسكويت التمر بالسمسم</h4>
+        <p>حلاوة التمر مع مقرمشة السمسم المحمص، وصفة جدتنا الحبيبة</p>
+        <div class="card-footer">
+          <div class="price">20 <small>ج.م</small></div>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CONTACT ═══════════════ -->
+<section id="contact">
+  <div class="section-header reveal">
+    <div class="section-tag">📍 تواصل معنا</div>
+    <h2>نحن في خدمتكم</h2>
+    <p>هل لديك سؤال أو تريد تقديم طلب خاص؟ تواصل معنا بأي وسيلة تناسبك</p>
+  </div>
+  <div class="contact-wrap">
+    <div class="contact-info reveal">
+      <div class="contact-card">
+        <div class="contact-icon">📞</div>
+        <div>
+          <h5>رقم الهاتف</h5>
+          <a href="tel:+201234567890">0123 456 7890</a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <h5>البريد الإلكتروني</h5>
+          <a href="/cdn-cgi/l/email-protection#660f0800092604071504091315074b040f1505130f12480301"><span class="__cf_email__" data-cfemail="0960676f66496b687a6b667c7a68246b607a6a7c607d276c6e">[email&#160;protected]</span></a>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📍</div>
+        <div>
+          <h5>عنواننا</h5>
+          <p>١٢ شارع التحرير، ص ٩، القاهرة مصر</p>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🌐</div>
+        <div>
+          <h5>تابعونا على</h5>
+          <div class="social-row">
+            <a href="#" class="soc-btn">📘 فيسبوك</a>
+            <a href="#" class="soc-btn">📷 إنستجرام</a>
+            <a href="#" class="soc-btn">🐦 تويتر</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="map-box reveal">
+      <div class="map-ph">
+        <div class="map-pin">📍</div>
+        <p>١٢ شارع التحرير، القاهرة</p>
+        <a href="https://maps.google.com" target="_blank">افتح في خرائط جوجل</a>
+      </div>
+      <div class="hours-box">
+        <h5>⏰ ساعات العمل</h5>
+        <div class="hours-row"><strong>السبت – الخميس</strong><span>٩ ص – ١٠ م <span class="open-now">● مفتوح الآن</span></span></div>
+        <div class="hours-row"><strong>الجمعة</strong><span>١ م – ١٠ م</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <p>© 2024 <strong>بسبوسة وبسكويت</strong> — جميع الحقوق محفوظة &nbsp;|&nbsp; صُنع بـ 🧡 في القاهرة</p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Menu filter
+  function filterMenu(cat) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    document.querySelectorAll('.menu-card').forEach(card => {
+      const show = cat === 'all' || card.dataset.cat === cat;
+      card.classList.toggle('active', show);
+      card.style.animation = show ? 'fadeUp .4s ease both' : '';
+    });
+  }
+
+  // Scroll reveal
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Smooth scroll with nav offset for all anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      const top = target.getBoundingClientRect().top + window.scrollY - 72;
+      window.scrollTo({ top, behavior: 'smooth' });
+    });
+  });
+
+  // Add btn feedback
+  document.querySelectorAll('.add-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      this.textContent = '✓';
+      this.style.background = '#2e7d32';
+      setTimeout(() => { this.textContent = '+'; this.style.background = ''; }, 1200);
+    });
+  });
+</script>
+
+<!-- Mobile menu -->
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+    });
+  });
+</script>
+</body>
+</html>
